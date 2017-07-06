@@ -1,9 +1,10 @@
 package com.account.domain.entities;
 
 import com.account.domain.enums.Currency;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,12 +17,21 @@ public class Account {
     @Id
     private String id;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @CreatedDate
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy mm:ss")
     private Date creationDate;
 
     private Double amount;
 
     private Currency currency;
+
+    public Account() {
+    }
+
+    public Account(double amount, Currency currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     public String getId() {
         return id;
@@ -53,5 +63,15 @@ public class Account {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", creationDate=" + creationDate +
+                ", amount=" + amount +
+                ", currency=" + currency +
+                '}';
     }
 }

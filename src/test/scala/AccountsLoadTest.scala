@@ -31,7 +31,7 @@ class AccountsLoadTest extends Simulation {
   object CreateAndLoadAccountBR {
     val create = exec(http("CreatAccountBR")
       .post(accountResourcePath + "/")
-      .body(RawFileBody("create_account_br.json"))
+      .body(RawFileBody("create_account_brl.json"))
       .asJSON
       .check(jsonPath("$.id").saveAs("accountId")))
 
@@ -54,13 +54,13 @@ class AccountsLoadTest extends Simulation {
 
   object LoadAccountByCurrencies {
     val usd = exec(http("LAByCurrencyUSD")
-      .get(accountResourcePath + "/currency/usd")
+      .get(accountResourcePath + "/search/bycurrency?currency=usd")
       .check(status.is(HttpURLConnection.HTTP_OK)))
     val br = exec(http("LAByCurrencyBR")
-      .get(accountResourcePath + "/currency/br")
+      .get(accountResourcePath + "/search/bycurrency?currency=br")
       .check(status.is(HttpURLConnection.HTTP_OK)))
     val eur = exec(http("LAByCurrencyEUR")
-      .get(accountResourcePath + "/currency/eur")
+      .get(accountResourcePath + "/search/bycurrency?currency=eur")
       .check(status.is(HttpURLConnection.HTTP_OK)))
   }
 

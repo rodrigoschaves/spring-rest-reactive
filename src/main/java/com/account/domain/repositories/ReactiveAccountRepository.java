@@ -18,9 +18,13 @@ package com.account.domain.repositories;
 import com.account.domain.entities.Account;
 import com.account.domain.enums.Currency;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
+@Repository
 public interface ReactiveAccountRepository extends ReactiveCrudRepository<Account, String> {
 
     Flux<Account> findByCurrency(Currency currency);
+
+    Flux<Account> findFirst100ByOrderByCreationDateDesc();
 }
