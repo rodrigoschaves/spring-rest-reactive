@@ -20,7 +20,7 @@ import static org.springframework.http.MediaType.TEXT_EVENT_STREAM;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest
 public class ApplicationIntegrationTest {
 
     WebTestClient webTestClient;

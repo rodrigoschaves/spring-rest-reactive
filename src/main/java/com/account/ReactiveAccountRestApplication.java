@@ -16,7 +16,6 @@ import reactor.core.publisher.Flux;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableMongoAuditing
 @EnableReactiveMongoRepositories
 public class ReactiveAccountRestApplication {
     public static void main(String[] args) {
